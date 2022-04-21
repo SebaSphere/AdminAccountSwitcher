@@ -2,7 +2,7 @@
 A plugin that allows you to login to any valid account from the subdomain.
 
 # Usage and installation
-![image](https://user-images.githubusercontent.com/27737877/164371579-370610f8-55b9-4938-a299-6a6841ea7b1f.png)
+![image](https://user-images.githubusercontent.com/27737877/164373408-9f94c33a-732f-4cfe-a3af-3e3c5f60e057.png)
 
 Before installing the plugin, make sure you have a DNS record on your domain with a wildcard. You can find more information about this here: https://en.wikipedia.org/wiki/Wildcard_DNS_record
 
