@@ -1,12 +1,16 @@
 package dev.sebastianb.adminaccountswitcher;
 
 import com.google.inject.Inject;
+import com.velocitypowered.api.command.CommandManager;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.Subscribe;
+import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
+import dev.sebastianb.adminaccountswitcher.command.AdminPlayerLoginManager;
 import dev.sebastianb.adminaccountswitcher.listener.GameProfileRequest;
-import org.slf4j.Logger;
+
+import java.util.logging.Logger;
 
 @Plugin(
         id = "adminaccountswitcher",
@@ -17,8 +21,7 @@ import org.slf4j.Logger;
 )
 public class AdminAccountSwitcher {
 
-    @Inject
-    public static Logger logger;
+    public static Logger logger = Logger.getLogger("AdminAccountSwitcher");
 
     private final ProxyServer proxy;
 
@@ -32,6 +35,13 @@ public class AdminAccountSwitcher {
     public void onProxyInitialization(ProxyInitializeEvent event) {
         // Init listener
         proxy.getEventManager().register(this, new GameProfileRequest(this));
+        proxy.getCommandManager().register("adminlogin", new AdminPlayerLoginManager(), "al");
+
+    }
+
+    @Subscribe
+    public void onProxyShutdown(ProxyShutdownEvent event) {
+
     }
 
 }

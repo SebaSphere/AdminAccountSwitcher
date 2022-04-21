@@ -10,6 +10,7 @@ import com.velocitypowered.api.event.player.GameProfileRequestEvent;
 import com.velocitypowered.api.util.GameProfile;
 import dev.sebastianb.adminaccountswitcher.AdminAccountSwitcher;
 import dev.sebastianb.adminaccountswitcher.Utils;
+import dev.sebastianb.adminaccountswitcher.database.AdminPlayerLoginList;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -36,13 +37,13 @@ public class GameProfileRequest {
                 .toLowerCase(Locale.ROOT);
         String extractedUsername = Utils.getPlayerNameFromSubdomain(virtualHostStr);
         // TODO: replace with a command based admin system for who can use this
-        if (extractedUsername != null) {
+        if (extractedUsername != null && AdminPlayerLoginList.getPlayerUUIDs().contains(event.getGameProfile().getUndashedId())) {
             if (event.isOnlineMode()) {
                 // TODO: Clean this up by separating the logic into a class
-                String playerOnlineUniqueID = getOnlineUuid(extractedUsername.toLowerCase())
-                        .flatMap(jsonObject -> parseJson(jsonObject.get("id"), String.class)).orElse(null);
-                String playerOnlinePlayerName = getOnlineUuid(extractedUsername.toLowerCase())
-                        .flatMap(jsonObject -> parseJson(jsonObject.get("name"), String.class)).orElse(null);
+                String playerOnlineUniqueID = Utils.getOnlineUuid(extractedUsername.toLowerCase())
+                        .flatMap(jsonObject -> Utils.parseJson(jsonObject.get("id"), String.class)).orElse(null);
+                String playerOnlinePlayerName = Utils.getOnlineUuid(extractedUsername.toLowerCase())
+                        .flatMap(jsonObject -> Utils.parseJson(jsonObject.get("name"), String.class)).orElse(null);
 
                 GameProfile profile = new GameProfile(playerOnlineUniqueID, playerOnlinePlayerName, ImmutableList.of());
                 event.setGameProfile(profile);
@@ -53,35 +54,6 @@ public class GameProfileRequest {
             }
         }
 
-    }
-
-    private Optional<JsonObject> getOnlineUuid(String username) {
-        try {
-            URL url = new URL("https://api.mojang.com/users/profiles/minecraft/" + username);
-            URLConnection urlConnection = url.openConnection();
-            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()))) {
-                return parseJson(bufferedReader.lines().collect(Collectors.joining()), JsonObject.class);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return Optional.empty();
-        }
-    }
-
-    private <T> Optional<T> parseJson(String json, Class<T> type) {
-        try {
-            return parseJson(JsonParser.parseString(json), type);
-        } catch (RuntimeException ex) {
-            return Optional.empty();
-        }
-    }
-
-    private <T> Optional<T> parseJson(JsonElement jsonElement, Class<T> type) {
-        try {
-            return Optional.of(new Gson().fromJson(jsonElement, type));
-        } catch (RuntimeException ex) {
-            return Optional.empty();
-        }
     }
 
 }
