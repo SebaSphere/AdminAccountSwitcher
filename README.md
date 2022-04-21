@@ -6,7 +6,9 @@ A plugin that allows you to login to any valid account from the subdomain.
 
 Before installing the plugin, make sure you have a DNS record on your domain with a wildcard. You can find more information about this here: https://en.wikipedia.org/wiki/Wildcard_DNS_record
 
-After a wildcard has been setup and you've added your player name as a admin, you'll be able to join the server.
+After a wildcard has been setup and you've added your player name as a admin, you'll be able to join the server using the subdomain.
+
+You will need to have the prefix `player-PLAYER_NAME` before your domain. For example, if you had your server connected to the domain `sebastianb.dev` and wanted to login as `SebaSphere`, you will need to enter `player-SebaSphere.sebastianb.dev` as the server you're connecting to.
 
 # Commands
 `/al | /adminlogin` : Base command, does nothing
