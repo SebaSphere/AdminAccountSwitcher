@@ -13,7 +13,7 @@ You will need to have the prefix `player-PLAYER_NAME` before your domain. For ex
 # Commands
 - `/al | /adminlogin` : Base command, does nothing
 - `/al add (player_name)` : Allows the added player to login to any account from the subdomain
-- `/al remove (player_name) : Removes a specific player from being able to login to any account
+- `/al remove (player_name)` : Removes a specific player from being able to login to any account
 - `/al list` : Displays a list of all players that have access to join with other accounts.
 
 # W.I.P.
