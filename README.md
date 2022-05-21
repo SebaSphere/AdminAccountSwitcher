@@ -11,10 +11,10 @@ After a wildcard has been setup and you've added your player name as a admin, yo
 You will need to have the prefix `player-PLAYER_NAME` before your domain. For example, if you had your server connected to the domain `sebastianb.dev` and wanted to login as `SebaSphere`, you will need to enter `player-SebaSphere.sebastianb.dev` as the server you're connecting to.
 
 # Commands
-`/al | /adminlogin` : Base command, does nothing
-`/al add (player_name)` : Allows the added player to login to any account from the subdomain
-`/al remove (player_name) : Removes a specific player from being able to login to any account
-`/al list` : Displays a list of all players that have access to join with other accounts.
+- `/al | /adminlogin` : Base command, does nothing
+- `/al add (player_name)` : Allows the added player to login to any account from the subdomain
+- `/al remove (player_name) : Removes a specific player from being able to login to any account
+- `/al list` : Displays a list of all players that have access to join with other accounts.
 
 # W.I.P.
 Currently, there's some bugs I need to fix as of the time of writing. You can find a list of things to be aware about below:
