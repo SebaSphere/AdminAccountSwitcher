@@ -1,5 +1,5 @@
 # AdminAccountSwitcher
-A plugin that allows you to login to any valid account from the subdomain.
+A plugin that allows you to login to any valid account from a subdomain.
 
 # Usage and installation
 ![image](https://user-images.githubusercontent.com/27737877/164373408-9f94c33a-732f-4cfe-a3af-3e3c5f60e057.png)
